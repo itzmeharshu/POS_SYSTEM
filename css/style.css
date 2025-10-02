@@ -221,28 +221,61 @@ body {
 }
 
 /* Print Specific Styles */
+
+/* ... (existing CSS from before) ... */
+
+/* Print Specific Styles - UPDATED */
 @media print {
     /* Hide everything except the receipt preview */
     body > * {
         visibility: hidden !important;
+        height: 0 !important; /* Ensure hidden elements don't take space */
+        overflow: hidden !important;
     }
 
-    #receipt-preview, #receipt-preview * {
-        visibility: visible !important;
-    }
-
-    /* Position the receipt content for printing */
     #receipt-preview {
-        width: 100%; 
-        box-shadow: none;
-        border: none;
+        visibility: visible !important;
         position: absolute;
         left: 0;
         top: 0;
         margin: 0;
-        padding: 0;
-        /* Ensure POS printer font settings */
+        padding: 5mm; /* Small padding from paper edge */
+        width: 78mm; /* Explicit width for typical 80mm receipt paper (with 1mm left/right margin) */
+        box-shadow: none;
+        border: none;
+        background-color: white;
+        
+        /* Font and line height for thermal printer */
         font-family: 'Courier New', Courier, monospace;
-        font-size: 12px; 
+        font-size: 12px; /* Standard receipt font size */
+        line-height: 1.2; /* Tighten line spacing */
+        
+        /* Ensure content doesn't break across pages */
+        page-break-after: avoid; 
+        page-break-before: avoid;
+        page-break-inside: avoid;
+    }
+
+    #receipt-preview * {
+        visibility: visible !important;
+    }
+
+    /* Force page size if possible (some browsers might ignore this) */
+    @page {
+        size: 80mm auto; /* 80mm width, auto height */
+        margin: 0; /* Remove default margins */
+    }
+
+    /* Further adjustments for receipt elements if needed */
+    .header-line, .divider, .data-row, .data-row-inline, .footer-line {
+        margin: 0 !important; /* Remove any margins that might cause extra spacing */
+        padding: 0 !important; /* Remove any padding */
+    }
+
+    /* Ensure display properties are suitable for print */
+    .data-row-inline {
+        display: flex;
+        justify-content: space-between;
+        width: 100%; /* Ensure it spans the full width */
     }
 }
