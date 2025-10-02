@@ -1,0 +1,113 @@
+<label for="dc-number">DC #</label>
+<input type="text" id="dc-number" data-preview-target="dc-number" >
+
+<label for="bill-number">Bill #</label>
+<input type="text" id="bill-number" data-preview-target="bill-number" >
+
+<label for="party-name">Party Name</label>
+<input type="text" id="party-name" data-preview-target="party-name" >
+
+<label for="vehicle-no">Vehicle No</label>
+<input type="text" id="vehicle-no" data-preview-target="vehicle-no" >
+
+<label for="product">Product</label>
+<input type="text" id="product" data-preview-target="product">
+
+<label for="location">Location</label>
+<input type="text" id="location" data-preview-target="location" >
+
+<label for="unloading-place">Unloading Place</label>
+<input type="text" id="unloading-place" data-preview-target="unloading-place" >
+
+<label for="load-weight">Load Weight (KG)</label>
+<input type="number" id="load-weight" data-preview-target="load-weight"  min="0">
+
+<label for="empty-weight">Empty Weight (KG)</label>
+<input type="number" id="empty-weight" data-preview-target="empty-weight"  min="0">
+
+<label for="driver-beta">Driver Beta</label>
+<input type="text" id="driver-beta" data-preview-target="driver-beta" >
+
+<input type="hidden" id="net-weight" data-preview-target="net-weight">
+<input type="hidden" id="quantity" data-preview-target="quantity">
+
+<button class="preview-btn" onclick="updatePreview()">Generate/Update Preview</button>
+
+<template id="weighment-slip-preview">
+    <div class="header-line center">JCK Bluemetals</div>
+    <div class="header-line center large-text">Weighment Slip</div>
+    <div class="divider">--------------------------------------</div>
+    
+    <div class="data-row-inline"><span>SLIP ID: 2001</span><span>Date: ${new Date().toLocaleDateString()}</span></div>
+    <div class="data-row-inline"><span>Time: ${new Date().toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true})}</span></div>
+
+    <div class="divider">--------------------------------------</div>
+    <div class="data-row">DC #: <span id="preview-dc-number"></span></div>
+    <div class="data-row">Bill #: <span id="preview-bill-number"></span></div>
+    <div class="divider">--------------------------------------</div>
+    
+    <div class="data-row">Party Name: <span id="preview-party-name"></span></div>
+    <div class="data-row">Vehicle No: <span id="preview-vehicle-no"></span></div>
+    <div class="data-row">Product: <span id="preview-product"></span></div>
+    <div class="data-row">Location: <span id="preview-location"></span></div>
+    <div class="data-row">Unloading Place: <span id="preview-unloading-place"></span></div>
+    
+    <div class="divider">======================================</div>
+    
+    <div class="data-row-inline">Load Weight: <span id="preview-load-weight"></span> KG</div>
+    <div class="data-row-inline">Empty Weight: <span id="preview-empty-weight"></span> KG</div>
+    <div class="data-row-inline large-text">Net Weight: <span id="preview-net-weight"></span> KG</div>
+    
+    <div class="divider">--------------------------------------</div>
+    <div class="data-row-inline large-text">Quantity: <span id="preview-quantity"></span> MT</div>
+    
+    <div class="divider">======================================</div>
+
+    <div class="data-row">Driver Beta: <span id="preview-driver-beta"></span></div>
+
+    <div class="divider">--------------------------------------</div>
+    <div class="footer-line center">Thank you for your business.</div>
+</template>
+
+<script>
+    /**
+     * Custom calculation logic for the Weighment Slip
+     * IMPORTANT: This function must be defined and exposed globally 
+     * for the event listeners created in app.js to find it later.
+     */
+    function calculateWeighmentSlip() {
+        // Since app.js exposes its functions globally, we can call them without 'window.' 
+        // as long as we define this function in the global scope too.
+
+        const load = parseFloat(document.getElementById('load-weight').value) || 0;
+        const empty = parseFloat(document.getElementById('empty-weight').value) || 0;
+        
+        const netWeight = Math.max(0, load - empty);
+        const quantity = netWeight / 1000;
+
+        document.getElementById('net-weight').value = netWeight;
+        document.getElementById('quantity').value = quantity.toFixed(2); // Format to 2 decimal places
+
+        // Manually update the calculated fields in the preview
+        // This relies on the globally available updatePreviewElement from app.js
+        updatePreviewElement('net-weight', netWeight);
+        updatePreviewElement('quantity', quantity.toFixed(2));
+    }
+    // Expose this custom function globally so app.js can attach it to listeners
+    window.calculateWeighmentSlip = calculateWeighmentSlip;
+
+
+    // Attach listeners and run initial setup
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Run the main setup, passing the globally exposed function as the calculator
+        // This relies on the globally available setupLiveUpdates from app.js
+        setupLiveUpdates('weighment-slip-preview', calculateWeighmentSlip);
+        
+        // 2. Initial calculation and update to populate the preview
+        calculateWeighmentSlip(); 
+    });
+
+    // We no longer need to manually attach listeners to load-weight and empty-weight
+    // because setupLiveUpdates in app.js handles all inputs. The custom calculation 
+    // runs every time ANY input is changed.
+</script>

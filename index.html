@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JCK POS System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="template-selector" class="screen active">
+        <h1>Select a Template</h1>
+        <div class="template-grid">
+            <button onclick="loadTemplate('templates/weighment-slip.html', 'Weighment Slip')">Weighment Slip</button>
+            <button onclick="loadTemplate('templates/age-template.html', 'Age Template')" disabled>Age Template (Placeholder)</button>
+            <button onclick="loadTemplate('templates/invoice-template.html', 'Invoice Template')" disabled>Invoice Template (Placeholder)</button>
+        </div>
+    </div>
+
+    <div id="app-screen" class="screen">
+        <header>
+            <button id="back-button" onclick="showSelector()">← Back to Templates</button>
+            <h2 id="template-title"></h2>
+            <button id="print-button" onclick="printReceipt()">Print Slip</button>
+        </header>
+
+        <main class="two-column-layout">
+            <section class="input-form">
+                <h3>Data Entry</h3>
+                <div id="template-content">
+                    </div>
+            </section>
+
+            <section class="live-preview-container">
+                <h3>Live Preview</h3>
+                <div id="receipt-preview" class="receipt">
+                    </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
