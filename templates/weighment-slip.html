@@ -34,39 +34,26 @@
 <button class="preview-btn" onclick="updatePreview()">Generate/Update Preview</button>
 
 <template id="weighment-slip-preview">
-    <div class="header-line center">JCK Bluemetals</div>
-    <div class="header-line center large-text">Weighment Slip</div>
-    <div class="divider">--------------------------------------</div>
+    <div class="header-line center large-text">JCK Bluemetals</div>
+    <div class="header-line center"><b>Weighment Slip</b> </div>
     
-    <div class="data-row-inline"><span>SLIP ID: 2001</span><span>Date: <span id="preview-date"></span></span></div>
-    <div class="data-row-inline"><span>Time: <span id="preview-time"></span></span></div>
-
-    <div class="divider">--------------------------------------</div>
+    <div class="data-row-inline"><span>Date: <span id="preview-date"></span></span><span>Time: <span id="preview-time"></span></span></div>
     <div class="data-row">DC #: <span id="preview-dc-number"></span></div>
     <div class="data-row">Bill #: <span id="preview-bill-number"></span></div>
     <div class="divider">--------------------------------------</div>
     
-    <div class="data-row">Party Name: <span id="preview-party-name"></span></div>
-    <div class="data-row">Vehicle No: <span id="preview-vehicle-no"></span></div>
-    <div class="data-row">Product: <span id="preview-product"></span></div>
-    <div class="data-row">Location: <span id="preview-location"></span></div>
-    <div class="data-row">Unloading Place: <span id="preview-unloading-place"></span></div>
+    <div class="data-row">Party Name <span id="preview-party-name"></span></div>
+    <div class="data-row">Vehicle No <span id="preview-vehicle-no"></span></div>
+    <div class="data-row">Product <span id="preview-product"></span></div>
+    <div class="data-row">Location <span id="preview-location"></span></div>
+    <div class="data-row">Unloading Place <span id="preview-unloading-place"></span></div>
     
-    <div class="divider">======================================</div>
-    
-    <div class="data-row-inline">Load Weight: <span id="preview-load-weight"></span> KG</div>
-    <div class="data-row-inline">Empty Weight: <span id="preview-empty-weight"></span> KG</div>
-    <div class="data-row-inline large-text">Net Weight: <span id="preview-net-weight"></span> KG</div>
-    
-    <div class="divider">--------------------------------------</div>
-    <div class="data-row-inline large-text">Quantity: <span id="preview-quantity"></span> MT</div>
-    
-    <div class="divider">======================================</div>
-
-    <div class="data-row">Driver Beta: <span id="preview-driver-beta"></span></div>
-
-    <div class="divider">--------------------------------------</div>
-    <div class="footer-line center">Thank you for your business.</div>
+    <div class="data-row-inline">Load Weight <span id="preview-load-weight"></span> KG</div>
+    <div class="data-row-inline">Empty Weight <span id="preview-empty-weight"></span> KG</div>
+    <div class="data-row-inline ">Net Weight <span id="preview-net-weight"></span> KG</div>
+    <div class="data-row-inline ">Quantity <span id="preview-quantity"></span> MT</div>
+    <div class="data-row">Driver Beta <span id="preview-driver-beta"></span></div>
+    <div class="footer-line center">Thank you for your business.<br>Please visit JCK Bluemetals. <br> Call to know more</div>
 </template>
 <script>
     /**
