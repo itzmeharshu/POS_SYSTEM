@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JCK POS System</title>
     <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
@@ -21,7 +24,10 @@
         <header>
             <button id="back-button" onclick="showSelector()">← Back to Templates</button>
             <h2 id="template-title"></h2>
-            <button id="print-button" onclick="printReceipt()">Print Slip</button>
+            <div class="header-actions">
+                <button id="pdf-button" onclick="saveAsPdf()">Save as PDF</button>
+                <button id="print-button" onclick="printReceipt()">Print Slip</button>
+            </div>
         </header>
 
         <main class="two-column-layout">

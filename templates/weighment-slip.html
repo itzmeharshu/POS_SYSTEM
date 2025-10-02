@@ -1,32 +1,32 @@
 <label for="dc-number">DC #</label>
-<input type="text" id="dc-number" data-preview-target="dc-number" >
+<input type="text" id="dc-number" data-preview-target="dc-number" value="9000/01-01/B/S">
 
 <label for="bill-number">Bill #</label>
-<input type="text" id="bill-number" data-preview-target="bill-number" >
+<input type="text" id="bill-number" data-preview-target="bill-number" value="5000/INV/26-27">
 
 <label for="party-name">Party Name</label>
-<input type="text" id="party-name" data-preview-target="party-name" >
+<input type="text" id="party-name" data-preview-target="party-name" value="PLACEHOLDER TRADERS">
 
 <label for="vehicle-no">Vehicle No</label>
-<input type="text" id="vehicle-no" data-preview-target="vehicle-no" >
+<input type="text" id="vehicle-no" data-preview-target="vehicle-no" value="TN99Z0000">
 
 <label for="product">Product</label>
-<input type="text" id="product" data-preview-target="product">
+<input type="text" id="product" data-preview-target="product" value="-SAND NEW">
 
 <label for="location">Location</label>
-<input type="text" id="location" data-preview-target="location" >
+<input type="text" id="location" data-preview-target="location" value="New Stockyard">
 
 <label for="unloading-place">Unloading Place</label>
-<input type="text" id="unloading-place" data-preview-target="unloading-place" >
+<input type="text" id="unloading-place" data-preview-target="unloading-place" value="TOWN SITE">
 
 <label for="load-weight">Load Weight (KG)</label>
-<input type="number" id="load-weight" data-preview-target="load-weight"  min="0">
+<input type="number" id="load-weight" data-preview-target="load-weight" value="35000" min="0">
 
 <label for="empty-weight">Empty Weight (KG)</label>
-<input type="number" id="empty-weight" data-preview-target="empty-weight"  min="0">
+<input type="number" id="empty-weight" data-preview-target="empty-weight" value="9000" min="0">
 
 <label for="driver-beta">Driver Beta</label>
-<input type="text" id="driver-beta" data-preview-target="driver-beta" >
+<input type="text" id="driver-beta" data-preview-target="driver-beta" value="N/A">
 
 <input type="hidden" id="net-weight" data-preview-target="net-weight">
 <input type="hidden" id="quantity" data-preview-target="quantity">
@@ -38,8 +38,8 @@
     <div class="header-line center large-text">Weighment Slip</div>
     <div class="divider">--------------------------------------</div>
     
-    <div class="data-row-inline"><span>SLIP ID: 2001</span><span>Date: ${new Date().toLocaleDateString()}</span></div>
-    <div class="data-row-inline"><span>Time: ${new Date().toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true})}</span></div>
+    <div class="data-row-inline"><span>SLIP ID: 2001</span><span>Date: <span id="preview-date"></span></span></div>
+    <div class="data-row-inline"><span>Time: <span id="preview-time"></span></span></div>
 
     <div class="divider">--------------------------------------</div>
     <div class="data-row">DC #: <span id="preview-dc-number"></span></div>
@@ -68,7 +68,6 @@
     <div class="divider">--------------------------------------</div>
     <div class="footer-line center">Thank you for your business.</div>
 </template>
-
 <script>
     /**
      * Custom calculation logic for the Weighment Slip
